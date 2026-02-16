@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Выберите страну</title>
+    <link rel="stylesheet" href="{% static 'style2.css' %}">
+</head>
+<body>
+
+
+<h1>Выберите страну</h1>
+
+<a href="http://127.0.0.1:8000/users/register/">
+<button>
+    Sign up
+    <div class="arrow-wrapper">
+        <div class="arrow"></div>
+
+    </div>
+</button>
+</a>
+<!-- From Uiverse.io by iZOXVL -->
+<!-- From Uiverse.io by mrhyddenn -->
+  <a href="http://127.0.0.1:8000/">
+<button>
+    <span>назад</span>
+</button>
+</a>
+
+<section class="cards-wrapper">
+
+  {% for product in products %}
+  <div class="card-grid-space">
+
+    <div class="num">{{ product.id }}</div>
+
+    <!-- Make the card clickable: go to detail page -->
+    <a class="card"
+       href="{% url 'Detail' product.id %}"
+       style="--bg-img: url('{% if product.image %}{{ product.image.url }}{% endif %}')">
+      <div>
+        <h1>{{ product.name_product }}</h1>
+        <div class="date">{{ product.created_at }}</div>
+        <div class="tags">
+          <!-- Optional tags -->
+        </div>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+
+</section>
+<!-- From Uiverse.io by satyamchaudharydev -->
+
+
+</body>
+</html>
