@@ -8,43 +8,53 @@
 </head>
 <body>
 
+<form class="form" method="POST">
+    {% csrf_token %}
 
+    <p class="title">Регистрация</p>
+    <p class="message">Создайте  аккаунт пройдя регистрацию</p>
 
-<!-- From Uiverse.io by satyamchaudharydev -->
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color:red;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
 
-
-
-<!-- From Uiverse.io by micaelgomestavares -->
-<form class="form">
-    <p class="title">Register </p>
-    <p class="message">Signup now and get full access to our app. </p>
-        <div class="flex">
+    <div class="flex">
         <label>
-            <input class="input" type="text" placeholder="" required="">
-            <span>Firstname</span>
+            <input class="input" type="text" name="first_name" required>
+            <span>введите имя</span>
         </label>
 
         <label>
-            <input class="input" type="text" placeholder="" required="">
-            <span>Lastname</span>
+            <input class="input" type="text" name="last_name" required>
+            <span>введите фамилию</span>
         </label>
     </div>
 
     <label>
-        <input class="input" type="email" placeholder="" required="">
-        <span>Email</span>
+        <input class="input" type="email" name="email" required>
+        <span>введите Email</span>
     </label>
 
     <label>
-        <input class="input" type="password" placeholder="" required="">
-        <span>Password</span>
+        <input class="input" type="password" name="password1" required>
+        <span>введите пароль</span>
     </label>
+
     <label>
-        <input class="input" type="password" placeholder="" required="">
-        <span>Confirm password</span>
+        <input class="input" type="password" name="password2" required>
+        <span>повторите введенный пароль</span>
     </label>
-    <button class="submit">Submit</button>
-    <p class="signin">Already have an acount ? <a href="#">Signin</a> </p>
+
+    <button class="submit" type="submit">Зарегистрироваться</button>
+
+    <p class="signin">
+        если есть аккаунт можете войти
+        <a href="http://127.0.0.1:8000/users/login/">Вход</a>
+    </p>
+
 </form>
+
 </body>
 </html>

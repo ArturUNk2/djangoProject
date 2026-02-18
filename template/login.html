@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'register.css' %}">
+</head>
+<body>
+
+<form class="form" method="POST">
+    {% csrf_token %}
+
+    <p class="title">Вход</p>
+    <p class="message">можете войти если есть аккаунт</p>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color:red;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+
+
+    <label>
+        <input class="input" type="email" name="email" required>
+        <span> введите Email</span>
+    </label>
+
+    <label>
+        <input class="input" type="password" name="password1" required>
+        <span>введите пароль</span>
+    </label>
+
+
+    <button class="submit" type="submit">Вход</button>
+
+    <p class="signin">
+        если нет аккаунта можете зарегистрироваться
+        <a href="#">Регистрация</a>
+    </p>
+
+</form>
+
+</body>
+</html>
