@@ -12,32 +12,47 @@
     {% csrf_token %}
 
     <p class="title">Вход</p>
-    <p class="message">можете войти если есть аккаунт</p>
 
-    {% if messages %}
-        {% for message in messages %}
-            <p style="color:red;">{{ message }}</p>
+    <!-- 🔥 Вот здесь происходит замена текста -->
+    <p class="message">
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+
+                {% if message.tags == "success" %}
+                    <script>
+                        setTimeout(function() {
+                            window.location.href = "/next_to_page/";
+                        }, 3000);
+                    </script>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            можете войти если есть аккаунт
+        {% endif %}
+    </p>
+
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <p style="color:red;">{{ error }}</p>
         {% endfor %}
     {% endif %}
 
-
-
     <label>
         <input class="input" type="email" name="email" required>
-        <span> введите Email</span>
+        <span>введите Email</span>
     </label>
 
     <label>
-        <input class="input" type="password" name="password1" required>
+        <input class="input" type="password" name="password" required>
         <span>введите пароль</span>
     </label>
-
 
     <button class="submit" type="submit">Вход</button>
 
     <p class="signin">
         если нет аккаунта можете зарегистрироваться
-        <a href="#">Регистрация</a>
+        <a href="/users/register/">Регистрация</a>
     </p>
 
 </form>
